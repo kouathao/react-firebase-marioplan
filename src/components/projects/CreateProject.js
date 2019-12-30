@@ -1,0 +1,52 @@
+import React, { Component } from "react";
+
+class CreateProject extends Component {
+  state = {
+    title: "",
+    content: ""
+  };
+
+  handleChange = e => {
+    //   [e.target.id] gets element of id
+    this.setState({
+      [e.target.id]: e.target.value
+    });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+
+    console.log(this.state);
+  };
+
+  render() {
+    return (
+      <div className="container">
+        <form onSubmit={this.handleSubmit} className="white">
+          <h5 className="grey-text text-draken-3">Create New Project</h5>
+          <div className="input-field">
+            <i className="material-icons prefix">subtitles</i>
+            <label htmlFor="title">Title</label>
+            <input type="text" id="title" onChange={this.handleChange} />
+          </div>
+          <div className="input-field">
+            <i className="material-icons prefix">create</i>
+            <label htmlFor="content">Content</label>
+            <textarea
+              id="content"
+              className="materialize-textarea"
+              onChange={this.handleChange}
+            ></textarea>
+          </div>
+          <div className="row">
+            <div className="input-field col s12 center-align">
+              <button className="btn waves-effect waves-light">Create</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    );
+  }
+}
+
+export default CreateProject;

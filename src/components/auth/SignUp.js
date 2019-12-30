@@ -27,27 +27,27 @@ class SignUp extends Component {
         <form onSubmit={this.handleSubmit} className="white">
           <h5 className="grey-text text-draken-3">Sign Up</h5>
           <div className="input-field">
-            <i class="material-icons prefix">mail_outline</i>
+            <i className="material-icons prefix">mail_outline</i>
             <label htmlFor="email">Email</label>
             <input type="email" id="email" onChange={this.handleChange} />
           </div>
           <div className="input-field">
-            <i class="material-icons prefix">lock_outline</i>
+            <i className="material-icons prefix">lock_outline</i>
             <label htmlFor="password">Password</label>
             <input
               type="password"
               id="password"
               onChange={this.handleChange}
-              autoComplete
+              autoComplete="true"
             />
           </div>
           <div className="input-field">
-            <i class="material-icons prefix">perm_identity</i>
+            <i className="material-icons prefix">perm_identity</i>
             <label htmlFor="firstName">First Name</label>
             <input type="text" id="firstName" onChange={this.handleChange} />
           </div>
           <div className="input-field">
-            <i class="material-icons prefix">perm_contact_calendar</i>
+            <i className="material-icons prefix">perm_contact_calendar</i>
             <label htmlFor="lastName">Last Name</label>
             <input type="text" id="lastName" onChange={this.handleChange} />
           </div>
