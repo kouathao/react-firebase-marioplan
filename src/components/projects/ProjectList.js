@@ -3,12 +3,15 @@ import React from "react";
 // components
 import ProjectSummary from "./ProjectSummary";
 
-function ProjectList() {
+// ! recieveing props from parent component
+function ProjectList({ projects }) {
   return (
     <div className="project-list section">
-      <ProjectSummary />
-      <ProjectSummary />
-      <ProjectSummary />
+      {/* adding projects && to the start means that if we have project then do the map  */}
+      {projects &&
+        projects.map(project => {
+          return <ProjectSummary project={project} key={project.id} />;
+        })}
     </div>
   );
 }
