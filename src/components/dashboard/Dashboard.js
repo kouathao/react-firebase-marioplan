@@ -13,7 +13,6 @@ class Dashboard extends Component {
     // ! 5) Destructor state
     const { projects } = this.props;
 
-    console.log(this.props);
     return (
       <div className="dashboard container">
         <div className="row">
