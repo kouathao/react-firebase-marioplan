@@ -3,7 +3,7 @@ import moment from "moment";
 
 const Notifications = props => {
   const { notifications } = props;
-  console.log(notifications);
+
   return (
     <div className="section">
       <div className="card z-depth-0">
@@ -16,7 +16,7 @@ const Notifications = props => {
                   <li key={item.id}>
                     <span className="pink-text">{item.user} </span>
                     <span>{item.content}</span>
-                    <div class="grey-text note-date">
+                    <div className="grey-text note-date">
                       {moment(item.time.toDate()).fromNow()}
                     </div>
                   </li>
