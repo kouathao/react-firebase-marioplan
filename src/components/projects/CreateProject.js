@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 // * 1) import action from projectAction
 import { createProject } from "../../store/actions/projectActions";
+import { Redirect } from "react-router-dom";
 
 class CreateProject extends Component {
   state = {
@@ -25,6 +26,8 @@ class CreateProject extends Component {
   };
 
   render() {
+    const { auth } = this.props;
+    if (!auth.uid) return <Redirect to="/signin" />;
     return (
       <div className="container">
         <form onSubmit={this.handleSubmit} className="white">
@@ -54,6 +57,12 @@ class CreateProject extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    auth: state.firebase.auth
+  };
+};
+
 // * 4 create a mapDisplatchToProps
 const mapDisplatchToProps = dispatch => {
   return {
@@ -63,4 +72,4 @@ const mapDisplatchToProps = dispatch => {
 
 // * 3) connect, connect component to redux store
 // *) 5) pass mapDisplatchToProps to connect... If we do not have mapstateto props then we can pass null as the first parameters
-export default connect(null, mapDisplatchToProps)(CreateProject);
+export default connect(mapStateToProps, mapDisplatchToProps)(CreateProject);

@@ -10,12 +10,15 @@ import { connect } from "react-redux";
 // use this as a HOC to connect this component with firestore
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
+import { Redirect } from "react-router-dom";
 
 class Dashboard extends Component {
   render() {
     // ! 4) Access props data from react-redux store
     // ! 5) Destructor state
-    const { projects } = this.props;
+    const { projects, auth } = this.props;
+
+    if (!auth.uid) return <Redirect to="/signin" />;
 
     return (
       <div className="dashboard container">
@@ -39,7 +42,8 @@ const mapStateToProps = state => {
   return {
     // 1) state, 2) project can be find in root reducers 3) then projects is in project Reducers
     // load data from firestore
-    projects: state.firestore.ordered.projects
+    projects: state.firestore.ordered.projects,
+    auth: state.firebase.auth
   };
 };
 
