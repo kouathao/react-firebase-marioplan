@@ -1,7 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
-import "firebase/analytics";
+// import "firebase/analytics";
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
@@ -16,7 +16,7 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-firebase.analytics();
+// firebase.analytics();
 
 // change how firebase work with timestamp ** NEED THIS *** PER UPDATE
 // firebase.firestore().settings({

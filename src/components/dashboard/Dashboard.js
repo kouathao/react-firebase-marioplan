@@ -7,6 +7,10 @@ import ProjectList from "../projects/ProjectList";
 // connect redux to react
 import { connect } from "react-redux";
 
+// use this as a HOC to connect this component with firestore
+import { firestoreConnect } from "react-redux-firebase";
+import { compose } from "redux";
+
 class Dashboard extends Component {
   render() {
     // ! 4) Access props data from react-redux store
@@ -31,12 +35,22 @@ class Dashboard extends Component {
 
 // ! 2) Create map state to prop
 const mapStateToProps = state => {
+  // console.log(state);
   return {
     // 1) state, 2) project can be find in root reducers 3) then projects is in project Reducers
-    projects: state.project.projects
+    // load data from firestore
+    projects: state.firestore.ordered.projects
   };
 };
 
 // ! 1) add HOC connect and wrap around component
 // ! 3) then add mapstatetoprops as a parameters to connect
-export default connect(mapStateToProps)(Dashboard);
+// * connect two HOC by using the compose
+export default compose(
+  connect(mapStateToProps),
+  firestoreConnect([
+    {
+      collection: "projects"
+    }
+  ])
+)(Dashboard);
