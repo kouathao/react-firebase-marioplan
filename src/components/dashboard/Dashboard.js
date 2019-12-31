@@ -16,7 +16,7 @@ class Dashboard extends Component {
   render() {
     // ! 4) Access props data from react-redux store
     // ! 5) Destructor state
-    const { projects, auth } = this.props;
+    const { projects, auth, notifications } = this.props;
 
     if (!auth.uid) return <Redirect to="/signin" />;
 
@@ -28,7 +28,7 @@ class Dashboard extends Component {
             <ProjectList projects={projects} />
           </div>
           <div className="col s12 m5 offset-m1">
-            <Notifications />
+            <Notifications notifications={notifications} />
           </div>
         </div>
       </div>
@@ -43,7 +43,8 @@ const mapStateToProps = state => {
     // 1) state, 2) project can be find in root reducers 3) then projects is in project Reducers
     // load data from firestore
     projects: state.firestore.ordered.projects,
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
+    notifications: state.firestore.ordered.notifications
   };
 };
 
@@ -54,7 +55,13 @@ export default compose(
   connect(mapStateToProps),
   firestoreConnect([
     {
-      collection: "projects"
+      collection: "projects",
+      orderBy: ["createdAt", "desc"]
+    },
+    {
+      collection: "notifications",
+      limit: 3,
+      orderBy: ["time", "desc"]
     }
   ])
 )(Dashboard);
